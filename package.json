@@ -1,0 +1,11 @@
+{
+  "name": "js-game",
+  "version": "0.0.1-alpha",
+  "description": "A dank JS game",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index"
+  },
+  "author": "Euab",
+  "license": "AGPL-3.0"
+}
