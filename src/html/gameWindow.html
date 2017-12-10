@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width initial-scale=1">
         <meta name="author" content="Euab">
         <title>Le Game</title>
+        <style>
+			*{padding: 0; margin: 0;}
+			canvas {background: #eee; display: block; margin: 0 auto;}
+		</style>
     </head>
 
     <body>
@@ -14,7 +18,15 @@
         	const canvas = document.getElementById("lecanvas");
         	var ctx = canvas.getContext("2d");
         	var xGround = 0;
-        	var yGround = 600;
+        	var yGround = 550;
+			function initDrawGround(){
+        		ctx.beginPath();
+        		ctx.rect(xGround, yGround, 150, 50);
+        		ctx.fillStyle = "#ADD8E6";
+        		ctx.fill();
+        		ctx.closePath();
+        		setInterval(drawGround, 10)
+        	}
         	function drawGround(){
         		xGround = xGround + 50;
         		ctx.beginPath();
@@ -23,7 +35,10 @@
         		ctx.fill();
         		ctx.closePath();
         	}
-        	drawGround();
+        	function init(){
+        		initDrawGround();
+        	}
+        	init();
         </script>
     </body>
 </html>
