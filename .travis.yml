@@ -1,0 +1,8 @@
+before_script:
+  - npm install
+script:
+  - npm start
+notifications:
+  email:
+    on_success: never
+    on_failure: always
