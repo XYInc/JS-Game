@@ -19,24 +19,72 @@
         	var ctx = canvas.getContext("2d");
         	var xGround = 0;
         	var yGround = 550;
+        	var initXPlayer = 400;
+        	var initYPlayer = 500;
+        	var wPressed = false;
+        	var aPressed = false;
+        	var sPressed = false;
+        	var dPressed = false;
+        	document.addEventListener("keydown", keyDownHandler, false);
+        	document.addEventListener("keyup", keyUpHandler, false);
+        	function keyDownHandler(e){
+        		if(e.keycode == 87){
+        			wPressed = true;
+        		}
+        		if(e.keycode == 65){
+        			aPressed = true;
+        		}
+        		if(e.keycode == 83){
+        			sPressed = true;
+        		}
+        		if(e.keycode == 68){
+        			dPressed = true;
+        		}
+        	}
+        	function keyUpHandler(e){
+        		if(e.keycode == 87){
+        			wPressed = false;
+        		}
+        		if(e.keycode == 65){
+        			aPressed = false;
+        		}
+        		if(e.keycode == 83){
+        			sPressed = false;
+        		}
+        		if(e.keycode == 68){
+        			dPressed = false;
+        		}
+        	}
 			function initDrawGround(){
         		ctx.beginPath();
         		ctx.rect(xGround, yGround, 150, 50);
-        		ctx.fillStyle = "#ADD8E6";
+        		ctx.fillStyle = "#32CD32";
         		ctx.fill();
         		ctx.closePath();
-        		setInterval(drawGround, 10)
+        		setInterval(drawGround, 1)
         	}
         	function drawGround(){
         		xGround = xGround + 50;
         		ctx.beginPath();
         		ctx.rect(xGround, yGround, 150, 50);
+        		ctx.fillStyle = "#32CD32";
+        		ctx.fill();
+        		ctx.closePath();
+        	}
+        	function initDrawPlayer(){
+        		ctx.beginPath();
+        		ctx.rect(initXPlayer, initYPlayer, 50, 50);
         		ctx.fillStyle = "#ADD8E6";
         		ctx.fill();
         		ctx.closePath();
         	}
         	function init(){
         		initDrawGround();
+        		initDrawPlayer();
+        		if(aPressed){
+
+        		}
+
         	}
         	init();
         </script>
