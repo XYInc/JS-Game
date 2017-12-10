@@ -1,5 +1,5 @@
 before_script:
-  - npm install
+  - npm install --save
 script:
   - npm start
 notifications:
