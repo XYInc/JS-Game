@@ -8,6 +8,22 @@
     </head>
 
     <body>
-        <canvas id="lecanvas" width=1920 height="1080"></canvas>
+        <canvas id="lecanvas" width="800" height="600"></canvas>
+
+        <script>
+        	const canvas = document.getElementById("lecanvas");
+        	var ctx = canvas.getContext("2d");
+        	var xGround = 0;
+        	var yGround = 600;
+        	function drawGround(){
+        		xGround = xGround + 50;
+        		ctx.beginPath();
+        		ctx.rect(xGround, yGround, 150, 50);
+        		ctx.fillStyle = "#ADD8E6";
+        		ctx.fill();
+        		ctx.closePath();
+        	}
+        	drawGround();
+        </script>
     </body>
 </html>
