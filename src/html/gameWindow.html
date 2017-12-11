@@ -21,39 +21,41 @@
         	var yGround = 550;
         	var initXPlayer = 400;
         	var initYPlayer = 500;
-        	var wPressed = false;
+            var XPlayer = 400;
+            var YPlayer = 500;
         	var aPressed = false;
-        	var sPressed = false;
         	var dPressed = false;
-        	document.addEventListener("keydown", keyDownHandler, false);
-        	document.addEventListener("keyup", keyUpHandler, false);
+            var prevXPlayer;
+            document.addEventListener("keydown", keyDownHandler, false);
+            document.addEventListener("keyup", keyUpHandler, false);
         	function keyDownHandler(e){
-        		if(e.keycode == 87){
-        			wPressed = true;
-        		}
-        		if(e.keycode == 65){
-        			aPressed = true;
-        		}
-        		if(e.keycode == 83){
-        			sPressed = true;
-        		}
-        		if(e.keycode == 68){
-        			dPressed = true;
-        		}
+                switch(e.key){
+                    case "ArrowLeft":{
+                        aPressed = true;
+                        dPressed = false;
+                        break;
+                    }
+                    case "ArrowRight":{
+                        dPressed = true;
+                        aPressed = false;
+                        break;
+                    }
+                }
         	}
         	function keyUpHandler(e){
-        		if(e.keycode == 87){
-        			wPressed = false;
-        		}
-        		if(e.keycode == 65){
-        			aPressed = false;
-        		}
-        		if(e.keycode == 83){
-        			sPressed = false;
-        		}
-        		if(e.keycode == 68){
-        			dPressed = false;
-        		}
+                switch(e.key){
+                    case "ArrowLeft":{
+                        aPressed = false;
+                        break;
+                    }
+                    case "ArrowRight":{
+                        dPressed = false;
+                        break;
+                    }
+                    default:{
+                        return
+                    }
+                }
         	}
 			function initDrawGround(){
         		ctx.beginPath();
@@ -71,40 +73,27 @@
         		ctx.fill();
         		ctx.closePath();
         	}
-        	function initDrawPlayer(){
-        		ctx.beginPath();
-        		ctx.rect(initXPlayer, initYPlayer, 50, 50);
-        		ctx.fillStyle = "#ADD8E6";
-        		ctx.fill();
-        		ctx.closePath();
-        	}
-          function drawPlayer(){
-            ctx.beginPath();
-            ctx.rect(XPlayer, YPlayer, 50, 50);
-            ctx.fillStyle = "#ADD8E6";
-            ctx.fill();
-            ctx.closePath();
-          }
-        	function init(){
+            function drawPlayer(){
+                if(dPressed && XPlayer < 750){
+                    XPlayer = XPlayer + 25;
+                    prevXPlayer = XPlayer - 25;
+                }
+                else if(aPressed && XPlayer > 0){
+                    XPlayer = XPlayer - 25;
+                    prevXPlayer = XPlayer + 25;
+                }
+                ctx.clearRect(prevXPlayer, YPlayer, 50, 50);
+                ctx.beginPath();
+                ctx.rect(XPlayer, YPlayer, 50, 50);
+                ctx.fillStyle = "#ADD8E6";
+                ctx.fill();
+                ctx.closePath();
+            }
+        	function draw(){
         		initDrawGround();
-        		initDrawPlayer();
+                setInterval(drawPlayer, 20);
         	}
-          function main(){
-            if(aPressed){
-              XPlayer = XPlayer - 50;
-            }
-            else if(dPressed){
-              XPlayer = XPlayer + 50;
-            }
-            if(XPlayer >= 80){
-              XPlayer = XPlayer
-            }
-            else if(XPlayer <= 0){
-              XPlayer = XPlayer + 20;
-            }
-          }
-        	init();
-          setInterval(main, 10);
+            draw();
         </script>
     </body>
 </html>
