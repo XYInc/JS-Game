@@ -9,6 +9,26 @@ const {app, BrowserWindow, Menu} = electron;
 let menuWindow;
 let gameWindow;
 
+const mainMenuTemplate = [
+  {
+    Label: "Game",
+    submenu: [
+      {
+        label: "Start game",
+        click() {
+          createGameWindow();
+        }
+      },
+      {
+        label: "quit",
+        click() {
+          app.quit();
+        }
+      }
+    ]
+  }
+];
+
 app.on("ready", function() {
   menuWindow = new BrowserWindow({
     width: 800,
@@ -23,7 +43,7 @@ app.on("ready", function() {
     app.quit();
   });
   const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
-  Menu.setApplicationMenu(mainMenu)
+  Menu.setApplicationMenu(mainMenu);
 });
 
 function createGameWindow() {
@@ -42,26 +62,6 @@ function createGameWindow() {
   });
 }
 
-const mainMenuTemplate = [
-  {
-    Label: "Game",
-    submenu: [
-      {
-        label: "Start game",
-        click() {
-          createGameWindow()
-        }
-      },
-      {
-        label: "quit",
-        click() {
-          app.quit();
-        }
-      }
-    ]
-  }
-];
-
 if (process.env.NODE_ENV !== "production") {
   mainMenuTemplate.push({
     label: "Developer Tools",
@@ -71,7 +71,7 @@ if (process.env.NODE_ENV !== "production") {
       },
       {
         label: "Toogle developer tools. Yiay",
-        accelerator: process.platform == "darwin" ? "Command+I" : 'Ctrl+I',
+        accelerator: process.platform === "darwin" ? "Command+I" : "Ctrl+I",
         click(item, focusedWindow) {
           focusedWindow.toggleDevTools();
         }
