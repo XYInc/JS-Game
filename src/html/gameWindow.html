@@ -26,6 +26,9 @@
         	var aPressed = false;
         	var dPressed = false;
             var prevXPlayer;
+            var randEnemyLocatX = Math.floor(Math.random() * 749) + 1;
+            var YEnemy = 0;
+            var YEnemy2 = 0;
             document.addEventListener("keydown", keyDownHandler, false);
             document.addEventListener("keyup", keyUpHandler, false);
         	function keyDownHandler(e){
@@ -73,6 +76,24 @@
         		ctx.fill();
         		ctx.closePath();
         	}
+            function drawEnemy(){
+                ctx.clearRect(XEnemy, YEnemy - 50, 25, 25);
+                ctx.beginPath();
+                var XEnemy = randEnemyLocatX;
+                ctx.rect(XEnemy, YEnemy, 25, 25);
+                ctx.fillStyle = "#FF4500";
+                ctx.fill();
+                ctx.closePath();
+                YEnemy = YEnemy + 50;
+            }
+            function drawEnemy2(){
+                ctx.beginPath();
+                ctx.rect(randEnemyLocatX, YEnemy2, 25, 25);
+                ctx.fillStyle = "#FF4500";
+                ctx.fill();
+                ctx.closePath();
+                YEnemy2 = YEnemy2 + 50;
+            }
             function drawPlayer(){
                 if(dPressed && XPlayer < 750){
                     XPlayer = XPlayer + 25;
@@ -92,6 +113,8 @@
         	function draw(){
         		initDrawGround();
                 setInterval(drawPlayer, 20);
+                setInterval(drawEnemy, 250);
+                setInterval(drawEnemy2, 250);
         	}
             draw();
         </script>
