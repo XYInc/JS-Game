@@ -78,15 +78,33 @@
         		ctx.fill();
         		ctx.closePath();
         	}
+          function drawPlayer(){
+            ctx.beginPath();
+            ctx.rect(XPlayer, YPlayer, 50, 50);
+            ctx.fillStyle = "#ADD8E6";
+            ctx.fill();
+            ctx.closePath();
+          }
         	function init(){
         		initDrawGround();
         		initDrawPlayer();
-        		if(aPressed){
-
-        		}
-
         	}
+          function main(){
+            if(aPressed){
+              XPlayer = XPlayer - 50;
+            }
+            else if(dPressed){
+              XPlayer = XPlayer + 50;
+            }
+            if(XPlayer >= 80){
+              XPlayer = XPlayer
+            }
+            else if(XPlayer <= 0){
+              XPlayer = XPlayer + 20;
+            }
+          }
         	init();
+          setInterval(main, 10);
         </script>
     </body>
 </html>
