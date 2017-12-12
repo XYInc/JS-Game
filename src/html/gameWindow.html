@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width initial-scale=1">
-        <meta name="author" content="Euab">
-        <title>Le Game</title>
-    </head>
+<head>
+	<title>Game</title>
+</head>
+<body>
+	<canvas id="theCanvas" width="800" height="600"></canvas>
 
-    <body>
-        <canvas id="lecanvas" width=1920 height="1080"></canvas>
-    </body>
+	<script>
+		const canvas = document.getElementById("theCanvas")
+		var ctx = canvas.getContext("2d")
+		var drawX = 30;
+		var drawY = 20;
+		function draw(){
+			ctx.beginPath();
+			ctx.rect(drawX, drawY, 100, 150)
+			ctx.fillStyle = "#0095DD";
+			ctx.fill()
+			ctx.closePath();
+		}
+	</script>
+</body>
 </html>
