@@ -2,10 +2,16 @@
   "name": "js-game",
   "version": "0.0.1-alpha",
   "description": "A dank JS game",
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {
-    "start": "node src/index"
+    "start": "electron src/main.js"
   },
   "author": "Euab",
-  "license": "AGPL-3.0"
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "electron": "^1.7.9"
+  },
+  "devDependencies": {
+    "electron-packager": "^10.1.0"
+  }
 }
