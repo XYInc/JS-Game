@@ -29,7 +29,7 @@ const mainMenuTemplate = [
   }
 ];
 
-app.on("ready", function() {
+app.on("ready", () => {
   menuWindow = new BrowserWindow({
     width: 800,
     height: 600
@@ -39,14 +39,15 @@ app.on("ready", function() {
     protocol: "file:",
     slashes: true
   }));
-  menuWindow.on("closed", function() {
+  menuWindow.on("closed", () => {
     app.quit();
   });
   const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
   Menu.setApplicationMenu(mainMenu);
 });
 
-function createGameWindow() {
+let createGameWindow;
+createGameWindow = () => {
   gameWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -57,7 +58,7 @@ function createGameWindow() {
     protocol: "file:",
     slashes:true
   }));
-  gameWindow.on("closed", function() {
+  gameWindow.on("closed", () => {
     gameWindow = null;
   });
 }
